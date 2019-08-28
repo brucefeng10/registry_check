@@ -38,7 +38,7 @@ dcap = dict(DesiredCapabilities.PHANTOMJS)
 dcap['phantomjs.page.settings.userAgent'] = (
     'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36')
 # dcap['browserName'] = 'Chrome'
-driver = webdriver.PhantomJS(executable_path='C:\\ProgramAppFeng\\phantomjs\\bin\\phantomjs.exe', desired_capabilities=dcap,
+driver = webdriver.PhantomJS(executable_path='./phantomjs/bin/phantomjs.exe', desired_capabilities=dcap,
                              service_args=['--ignore-ssl-errors=true'])
 # driver = webdriver.PhantomJS(executable_path='/home/ai/fengxf/tools/phantomjs/bin/phantomjs', desired_capabilities=dcap,
 #                              service_args=['--ignore-ssl-errors=true'])
@@ -476,7 +476,7 @@ def aitouzi(phone_num):
 
 def main():
 
-    data_name = 'bojindai'
+    data_name = 'data'
     phone_list = []
     with open('./phone_list/{}.csv'.format(data_name), 'rU') as f:
         reader = csv.reader(f)
@@ -497,25 +497,25 @@ def main():
         except Exception as e1:
             phno_result.append(3)
             logging.info(e1)
-        # try:
-        #     result2 = tuodao(phno)
-        #     phno_result.append(result2)
-        # except Exception as e2:
-        #     phno_result.append(3)
-        #     logging.info(e2)
-        # try:
-        #     result3 = aitoujinrong(phno)
-        #     phno_result.append(result3)
-        #     time.sleep(1)
-        # except Exception as e3:
-        #     phno_result.append(3)
-        #     logging.info(e3)
-        # try:
-        #     result4 = aitouzi(phno)
-        #     phno_result.append(result4)
-        # except Exception as e4:
-        #     phno_result.append(3)
-        #     logging.info(e4)
+        try:
+            result2 = tuodao(phno)
+            phno_result.append(result2)
+        except Exception as e2:
+            phno_result.append(3)
+            logging.info(e2)
+        try:
+            result3 = aitoujinrong(phno)
+            phno_result.append(result3)
+            time.sleep(1)
+        except Exception as e3:
+            phno_result.append(3)
+            logging.info(e3)
+        try:
+            result4 = aitouzi(phno)
+            phno_result.append(result4)
+        except Exception as e4:
+            phno_result.append(3)
+            logging.info(e4)
 
         print('Result{}: '.format(i), phno_result)
         result.append(phno_result)
@@ -538,74 +538,11 @@ def main():
                 writer.writerow(row)
 
 
-def multi_process():
-    data_name = 'data'
-    phone_list = []
-    with open('./phone_list/{}.csv'.format(data_name), 'rU') as f:
-        reader = csv.reader(f)
-        for v in reader:
-            phone_list.append(v[0])
-
-    phone_list = ['18650116312', '13588720654', '13905164979', '13689562456']
-    # 0：未注册，1：注册，2：验证码多次识别错误，3：未知
-    # result = [['phone_no', '博金贷', '拓道金服', '爱投金融']]
-    result = []
-    pool = Pool(8)
-    for i, ph in enumerate(phone_list):
-        res = pool.apply_async(func=aitouzi, args=(ph,))
-        result.append(res)
-    pool.close()
-    pool.join()
-    # for i, phno in enumerate(phone_list):
-    #     phno_result = [phno]
-        # result = renrendai(phno)  # True: registered; False: not registered
-        # try:
-        #     result1 = bojindai(phno)
-        #     phno_result.append(result1)
-        # except Exception as e1:
-        #     phno_result.append(3)
-        #     logging.info(e1)
-        # try:
-        #     result2 = tuodao(phno)
-        #     phno_result.append(result2)
-        # except Exception as e2:
-        #     phno_result.append(3)
-        #     logging.info(e2)
-        # try:
-        #     result3 = aitoujinrong(phno)
-        #     phno_result.append(result3)
-        # except Exception as e3:
-        #     phno_result.append(3)
-        #     logging.info(e3)
-        # try:
-        #     result4 = aitouzi(phno)
-        #     phno_result.append(result4)
-        # except Exception as e4:
-        #     phno_result.append(3)
-        #     logging.info(e4)
-        #
-        # print('Result{}: '.format(i), phno_result)
-        # result.append(phno_result)
-        # logging.info(phno + str(result))
-
-    print('result', phone_list, result)
-    for res in result:
-        print(res.get())
-    driver.close()
-
-    if_write = False
-    if if_write:
-        with open('./result/result_{}.csv'.format(data_name), 'w', newline='') as fps:
-            writer = csv.writer(fps)
-            for row in result:
-                writer.writerow(row)
-
-
 if __name__ == '__main__':
     # read telephone number
     t0 = time.time()
     cnnm_bjd = CNNPredictionBJD()  # bojindai prediction api
-    # cnnm_atz = CNNPredictionATZ()  # aitouzi prediction api
+    cnnm_atz = CNNPredictionATZ()  # aitouzi prediction api
     main()
 
     t1 = time.time()
