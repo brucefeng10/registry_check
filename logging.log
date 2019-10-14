@@ -238,3 +238,12 @@
 2019-08-19 10:23:04,760 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'IHDR' 16 13
 2019-08-19 10:23:04,760 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'pHYs' 41 9
 2019-08-19 10:23:04,760 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'IDAT' 62 8192
+2019-08-28 17:25:19,454 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'IHDR' 16 13
+2019-08-28 17:25:19,454 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'pHYs' 41 9
+2019-08-28 17:25:19,454 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'IDAT' 62 8192
+2019-08-28 17:25:21,398 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'IHDR' 16 13
+2019-08-28 17:25:21,398 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'pHYs' 41 9
+2019-08-28 17:25:21,398 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'IDAT' 62 8192
+2019-08-28 17:25:24,519 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'IHDR' 16 13
+2019-08-28 17:25:24,519 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'pHYs' 41 9
+2019-08-28 17:25:24,520 - PngImagePlugin.py[line:139] - DEBUG - STREAM b'IDAT' 62 8192

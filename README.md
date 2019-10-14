@@ -10,5 +10,8 @@
 >* 关于验证码的识别模型，可参考https://github.com/ypwhs/captcha_break
 
 ## 文件说明：
->* 代码入口为web_check.py
+>* 代码入口为
+```python
+web_check.py
+```
 >* cnn_model里面存放验证码识别模型，xx_pic文件夹是截存下来的图片，
